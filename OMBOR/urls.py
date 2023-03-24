@@ -4,7 +4,8 @@ from Asosiy.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Loginview.as_view(), name='login'),
+    path('', register),
+    path('login/', Loginview.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('Asosiy/',include('Asosiy.urls')),
     path('Asosiy2/',include('Asosiy2.urls')),

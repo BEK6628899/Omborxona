@@ -5,6 +5,19 @@ from django.contrib.auth.models import User
 from .models import *
 
 
+
+def register(request):
+    if request.method == 'POST' and request.POST.get('p') == request.POST.get('cp'):
+        User.objects.create_user(
+            username=request.POST.get('l'),
+            password=request.POST.get('cp')
+        )
+        return redirect('login')
+    return render(request,"register.html")
+
+
+
+
 class Loginview(View):
     def post(self,request):
             user = authenticate(username=request.POST.get('l'),
@@ -38,7 +51,7 @@ class ClientView(View):
         if client is None or client == "":
             client1 = Client.objects.filter(ombor__user=request.user)
         else:
-            client1 = Client.objects.filter(ism__contains=client)
+            client1 = Client.objects.filter(ombor__user=request.user,ism__contains=client)
         data = {'client': client1}
         return render(request,"clients.html",data)
     def post(self,request):
@@ -85,7 +98,7 @@ class MahsulotlarView(View):
         if mahsulot is None or mahsulot == "":
             ombor1 = Mahsulot.objects.filter(ombor__user=request.user)
         else:
-            ombor1 = Mahsulot.objects.filter(nom__contains=mahsulot)
+            ombor1 = Mahsulot.objects.filter(ombor__user=request.user,nom__contains=mahsulot)
         data = {'mahsulot': ombor1}
         return render(request,"products.html",data)
     def post(self,request):
