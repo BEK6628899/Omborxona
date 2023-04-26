@@ -50,7 +50,7 @@ class StatistikaOchir(View):
 
 
 
-# class StatistikaUpdate(View):
+# class StatistikaUpdate(View):       # statistikani tahrirlash uchun html mavjud emas!!!
 #     def get(self,request,pk):
 #         stats = Statistika.objects.get(id=pk)
 #         if stats.ombor == Ombor.objects.get(user=request.user):
@@ -65,6 +65,8 @@ class StatistikaOchir(View):
 #              nasiya=request.POST.get('nasiya')
 #         )
 #         return redirect('statistika')
+
+
 
 
 

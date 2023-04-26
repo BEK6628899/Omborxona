@@ -11,3 +11,6 @@ urlpatterns = [
     path('Asosiy2/',include('Asosiy2.urls')),
 ]
 
+
+
+
